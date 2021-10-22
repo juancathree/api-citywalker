@@ -27,5 +27,5 @@ func MongoDB() {
 		log.Fatal(err)
 	}
 
-	DB = client.Database(os.Getenv("DB_COLLECTION"))
+	DB = client.Database(os.Getenv("DB_DATABASE"))
 }
