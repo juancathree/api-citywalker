@@ -8,6 +8,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
 func Signup() fiber.Handler {
@@ -19,13 +20,18 @@ func Signup() fiber.Handler {
 		err := c.BodyParser(&requestBody)
 		if err != nil {
 			return c.Status(fiber.StatusInternalServerError).JSON(&fiber.Map{
-				"error": "couldn't be parsed body to user",
+				"error": err,
 			})
 		}
 
 		// Save in database
 		err = application.Signup(&requestBody)
 		if err != nil {
+			if mongo.IsDuplicateKeyError(err) {
+				return c.Status(fiber.StatusConflict).JSON(&fiber.Map{
+					"error": err,
+				})
+			}
 			return c.Status(fiber.StatusInternalServerError).JSON(&fiber.Map{
 				"error": err,
 			})
@@ -41,7 +47,7 @@ func Signup() fiber.Handler {
 		token, err := claims.SignedString([]byte(os.Getenv("SECRET_KEY")))
 		if err != nil {
 			return c.Status(fiber.StatusInternalServerError).JSON(&fiber.Map{
-				"error": "couldn't be signed the jwt token",
+				"error": err,
 			})
 		}
 

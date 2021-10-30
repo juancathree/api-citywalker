@@ -19,7 +19,7 @@ func AuthRequired() func(*fiber.Ctx) error {
 
 		if err != nil {
 			return c.Status(fiber.StatusUnauthorized).JSON(&fiber.Map{
-				"error": "Unauthorized",
+				"error": err,
 			})
 		}
 

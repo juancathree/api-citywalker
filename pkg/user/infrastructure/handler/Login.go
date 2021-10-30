@@ -19,7 +19,7 @@ func Login() fiber.Handler {
 		err := c.BodyParser(&requestBody)
 		if err != nil {
 			return c.Status(fiber.StatusInternalServerError).JSON(&fiber.Map{
-				"error": "couldn't be parsed body to user",
+				"error": err,
 			})
 		}
 
@@ -41,7 +41,7 @@ func Login() fiber.Handler {
 		token, err := claims.SignedString([]byte(os.Getenv("SECRET_KEY")))
 		if err != nil {
 			return c.Status(fiber.StatusInternalServerError).JSON(&fiber.Map{
-				"error": "couldn't be signed the jwt token",
+				"error": err,
 			})
 		}
 
