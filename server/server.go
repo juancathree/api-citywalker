@@ -37,5 +37,7 @@ func init() {
 }
 
 func StartServer() {
-	app.ListenTLS(os.Getenv("PORT"), "server/certs/ssl.cert", "server/certs/ssl.key")
+	// app.ListenTLS(os.Getenv("PORT"), "server/certs/ssl.cert", "server/certs/ssl.key")
+	_ = app.Listen(os.Getenv("PORT"))
+
 }
