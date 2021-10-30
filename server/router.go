@@ -3,11 +3,16 @@ package server
 // placeRouter "TravelAPI/pkg/place/infrastructure/router"
 // travelRouter "TravelAPI/pkg/travel/infrastructure/router"
 import (
+	placeRouter "citywalker/pkg/place/infrastructure/router"
 	userRouter "citywalker/pkg/user/infrastructure/router"
 )
 
 func SetupRouter() {
-	//User
+	// User
 	user := app.Group("/")
 	userRouter.Router(user)
+
+	// Place
+	place := app.Group("/:lng/place")
+	placeRouter.Router(place)
 }
