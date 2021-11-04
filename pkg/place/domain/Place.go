@@ -26,9 +26,9 @@ type Visit struct {
 }
 
 func (p *Place) Latitude() float64 {
-	return p.Location.Coordinates[0]
+	return p.Location.Coordinates[1]
 }
 
 func (p *Place) Longitude() float64 {
-	return p.Location.Coordinates[1]
+	return p.Location.Coordinates[0]
 }
