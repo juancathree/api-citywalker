@@ -7,12 +7,12 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-func (mo *MongoRepository) CreateFilter(city *string, pref, cuV *[]string) *primitive.M {
+func (mo *MongoRepository) CreateFilter(city *string, pref, cuV *[]string, lng *string) *primitive.M {
 	// Create a filter for MongoDB query
 	filter := bson.M{
-		"city.en":     strings.Title(*city),
-		"category.en": bson.M{"$nin": *pref},
-		"name.en":     bson.M{"$nin": *cuV},
+		"city." + (*lng):     strings.Title(*city),
+		"category." + (*lng): bson.M{"$nin": *pref},
+		"name." + (*lng):     bson.M{"$nin": *cuV},
 	}
 
 	return &filter
