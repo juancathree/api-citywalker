@@ -8,7 +8,7 @@ func (s *Schedule) GetTotalHours() *float64 {
 	hours := s.ItineraryEndTime.Hour() - s.StartDay.Hour()
 
 	// Get hours of intermediate days
-	hours += (s.ItineraryEndTime.Hour()-s.ItineraryStartTime.Hour())*s.TravelTime - 2
+	hours += (s.ItineraryEndTime.Hour() - s.ItineraryStartTime.Hour()) * (s.TravelTime - 2)
 
 	// Get hours of last day
 	hours += s.EndDay.Hour() - s.ItineraryStartTime.Hour()
