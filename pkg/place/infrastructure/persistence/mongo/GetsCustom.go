@@ -6,9 +6,9 @@ import (
 	"fmt"
 )
 
-func (mo *MongoRepository) GetsCustom(city *string, pref, cuV *[]string) (*[]domain.Place, error) {
+func (mo *MongoRepository) GetsCustom(city *string, pref, cuV *[]string, lng *string) (*[]domain.Place, error) {
 	// Create the filter
-	filter := mo.CreateFilter(city, pref, cuV)
+	filter := mo.CreateFilter(city, pref, cuV, lng)
 
 	// Get from database and decode
 	places := make([]domain.Place, 0, 20)
