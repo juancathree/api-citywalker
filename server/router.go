@@ -4,6 +4,8 @@ package server
 // travelRouter "TravelAPI/pkg/travel/infrastructure/router"
 import (
 	placeRouter "citywalker/pkg/place/infrastructure/router"
+	travelRouter "citywalker/pkg/travel/infrastructure/router"
+	"citywalker/pkg/user/infrastructure/middleware"
 	userRouter "citywalker/pkg/user/infrastructure/router"
 )
 
@@ -13,6 +15,10 @@ func SetupRouter() {
 	userRouter.Router(user)
 
 	// Place
-	place := app.Group("/:lng/place")
+	place := app.Group("/:lng/place", middleware.AuthRequired())
 	placeRouter.Router(place)
+
+	// Travel
+	travel := app.Group("/:lng/travel", middleware.AuthRequired())
+	travelRouter.Router(travel)
 }
