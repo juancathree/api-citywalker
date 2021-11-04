@@ -8,7 +8,7 @@ import (
 
 type User struct {
 	ID       string   `json:"_id,omitempty" bson:"_id,omitempty"`
-	Name     string   `validate:"required" json:"name" bson:"name"`
+	Nickname string   `validate:"required" json:"nickname" bson:"nickname"`
 	Email    string   `validate:"required,email" json:"email" bson:"email"`
 	Password string   `validate:"required" json:"password" bson:"password"`
 	Travels  []string `validate:"dive,unique" json:"travels,omitempty" bson:"travels,omitempty"`
