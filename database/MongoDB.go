@@ -18,8 +18,9 @@ func MongoDB() {
 	defer cancel()
 
 	// Defining URI to connect DB, getting environment values
-	user, pass, database := os.Getenv("DB_USERNAME"), os.Getenv("DB_PASSWORD"), os.Getenv("DB_DATABASE")
-	uri := fmt.Sprintf("mongodb://%v:%v@mongo.citywalker.app/%v?retryWrites=true&w=majority", user, pass, database)
+	user, pass, host, database := os.Getenv("DB_USERNAME"), os.Getenv("DB_PASSWORD"),
+		os.Getenv("DB_HOSTNAME"), os.Getenv("DB_DATABASE")
+	uri := fmt.Sprintf("mongodb://%v:%v@%v/%v?retryWrites=true&w=majority", user, pass, host, database)
 
 	// Connecting to DB
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))
