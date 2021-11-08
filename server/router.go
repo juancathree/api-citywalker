@@ -1,7 +1,5 @@
 package server
 
-// placeRouter "TravelAPI/pkg/place/infrastructure/router"
-// travelRouter "TravelAPI/pkg/travel/infrastructure/router"
 import (
 	placeRouter "citywalker/pkg/place/infrastructure/router"
 	travelRouter "citywalker/pkg/travel/infrastructure/router"

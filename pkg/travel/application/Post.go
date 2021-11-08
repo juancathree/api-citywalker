@@ -4,7 +4,6 @@ import (
 	itineraryApplication "citywalker/pkg/itinerary/application"
 	"citywalker/pkg/travel/domain"
 	userApplication "citywalker/pkg/user/application"
-	"fmt"
 )
 
 func Post(travel *domain.Travel, userID string, lng *string) (*domain.Travel, error) {
@@ -25,7 +24,6 @@ func Post(travel *domain.Travel, userID string, lng *string) (*domain.Travel, er
 
 	newTravel, err := repo.Post(travel)
 	if err != nil {
-		fmt.Println("tonto")
 		return nil, err
 	}
 
