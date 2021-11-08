@@ -9,4 +9,5 @@ import (
 func Router(router fiber.Router) {
 	router.Post("/login", handler.Login())
 	router.Post("/signup", handler.Signup())
+	router.Get("/user/:email", handler.Get())
 }
