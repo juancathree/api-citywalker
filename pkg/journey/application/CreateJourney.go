@@ -153,7 +153,6 @@ func InitialJourney(clusters *[][]placeDomain.Place, places *[]placeDomain.Place
 	}
 
 	return &journey
-
 }
 
 func CalculateClusterDistance(clusters *[][]placeDomain.Place, matrixCost *matrixDomain.MatrixCost, lng *string) *[][]Distance {
