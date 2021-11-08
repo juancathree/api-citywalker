@@ -20,7 +20,7 @@ func PutUsers() fiber.Handler {
 		}
 
 		// Update document in database
-		err = application.PutUsers(request["email"].(string), request["travelID"].(string), request["exists"].(bool))
+		err = application.PutUsers(request["email"].(string), request["id"].(string), request["exists"].(bool))
 		if err != nil {
 			return c.Status(fiber.StatusInternalServerError).JSON(&fiber.Map{
 				"error": err,
