@@ -14,10 +14,16 @@ func Put() fiber.Handler {
 
 		var requestBody domain.Travel
 
-		fmt.Println(string(c.Body()))
-
 		// Convert body to travel
 		err := c.BodyParser(&requestBody)
+		if err != nil {
+			return c.Status(fiber.StatusInternalServerError).JSON(&fiber.Map{
+				"error": err,
+			})
+		}
+
+		var expenses map[string]interface{}
+		err = c.BodyParser(&expenses)
 		if err != nil {
 			return c.Status(fiber.StatusInternalServerError).JSON(&fiber.Map{
 				"error": err,
@@ -27,6 +33,7 @@ func Put() fiber.Handler {
 		// Initialize and save in database
 		travel, err := application.Put(&requestBody, &lng)
 		if err != nil {
+			fmt.Println(err)
 			return c.Status(fiber.StatusInternalServerError).JSON(&fiber.Map{
 				"error": err,
 			})
