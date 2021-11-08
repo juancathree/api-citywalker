@@ -1,6 +1,9 @@
 package application
 
-import "citywalker/pkg/travel/domain"
+import (
+	"citywalker/pkg/travel/domain"
+	userApplication "citywalker/pkg/user/application"
+)
 
 func PutUsers(userID, travelID string, exist bool) error {
 
@@ -16,6 +19,11 @@ func PutUsers(userID, travelID string, exist bool) error {
 	}
 
 	err = repo.PutTravelUsers(&u, &travelID, &exist)
+	if err != nil {
+		return err
+	}
+
+	err = userApplication.PostTravel(&user.ID, &travelID)
 	if err != nil {
 		return err
 	}
