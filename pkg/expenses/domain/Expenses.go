@@ -5,7 +5,6 @@ type Expenses map[string][]Expense
 type Expense struct {
 	Amount      float64 `validate:"required" json:"amount" bson:"amount"`
 	IsPersonal  bool    `validate:"required" json:"isPersonal" bson:"isPersonal"`
-	Category    string  `json:"category" bson:"category"`
 	Description string  `validate:"required,max=30" json:"description" bson:"description"`
 }
 
