@@ -21,18 +21,7 @@ func PutExpenses() fiber.Handler {
 			})
 		}
 
-		amount := request["expense"].(map[string]interface{})["amount"]
-		isPersonal := request["expense"].(map[string]interface{})["isPersonal"]
-
-		amountFloat, err := strconv.ParseFloat(amount.(string), 64)
-
-		if err != nil {
-			return c.Status(fiber.StatusInternalServerError).JSON(&fiber.Map{
-				"error": err,
-			})
-		}
-
-		isPersonalBool, err := strconv.ParseBool(isPersonal.(string))
+		amount, err := strconv.ParseFloat(request["amount"].(string), 64)
 
 		if err != nil {
 			return c.Status(fiber.StatusInternalServerError).JSON(&fiber.Map{
@@ -41,9 +30,9 @@ func PutExpenses() fiber.Handler {
 		}
 
 		expense := &expenseDomain.Expense{
-			Amount:      amountFloat,
-			Description: request["expense"].(map[string]interface{})["description"].(string),
-			IsPersonal:  isPersonalBool,
+			Amount:      amount,
+			Description: request["description"].(string),
+			IsPersonal:  request["isPersonal"].(bool),
 		}
 
 		// Update document in database
