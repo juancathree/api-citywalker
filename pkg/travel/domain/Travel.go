@@ -9,8 +9,8 @@ import (
 type Travel struct {
 	ID string `json:"_id,omitempty" bson:"_id,omitempty"`
 	itineraryDomain.Itinerary
-	expensesDomain.Expenses
-	TravelUsers []TravelUser `validate:"required,dive,required,unique" json:"travelUsers" bson:"travelUsers"`
+	expensesDomain.Expenses `json:"Expenses,omitempty" bson:"Expenses,omitempty"`
+	TravelUsers             []TravelUser `validate:"required,dive,required,unique" json:"travelUsers" bson:"travelUsers"`
 }
 
 type TravelUser struct {

@@ -12,9 +12,9 @@ func (mo *MongoRepository) PutExpenses(user *domain.TravelUser, travelID *string
 	var update bson.M
 
 	if *exists {
-		update = bson.M{"$pull": bson.M{"expenses." + *&user.Nickname: *expense}}
+		update = bson.M{"$pull": bson.M{"Expenses." + *&user.Nickname: *expense}}
 	} else {
-		update = bson.M{"$push": bson.M{"expenses." + *&user.Nickname: *expense}}
+		update = bson.M{"$push": bson.M{"Expenses." + *&user.Nickname: *expense}}
 	}
 
 	return mo.UpdateDocument(travelID, &update)
